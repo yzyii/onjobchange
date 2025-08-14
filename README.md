@@ -6,6 +6,9 @@ This addon cobbles together code from the following addons to provide a luashita
 * Jyouya's JobChange (https://github.com/Jyouya/Ashita-Stuff/blob/master/addons/libs/events/jobChange.lua) 
 
 Type the following to generate a new template file at ..\\config\\addons\\onjobchange\\
+```
+/ojc new
+```
 
 The OnJobChange function can then be populated with arbitrary chat commands to be executed on any job change. e.g.
 ```lua
