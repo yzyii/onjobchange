@@ -1,6 +1,6 @@
 # onjobchange
 
-This addon cobbles together code from the following addons to provide a luashitacast-like config for triggering arbitrary commands on changing jobs:
+This addon cobbles together code from the following addons to provide a luashitacast-like config for triggering arbitrary commands on changing jobs (including when subjob changes):
 
 * Thorny's LuAshitacast (https://github.com/ThornyFFXI/LuAshitacast)
 * Jyouya's JobChange (https://github.com/Jyouya/Ashita-Stuff/blob/master/addons/libs/events/jobChange.lua) 
