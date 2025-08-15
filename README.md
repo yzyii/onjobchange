@@ -27,7 +27,7 @@ profile.OnJobChangeRun = function(mainJob, subJob)
             queue('/macro set 3')
             queue('/bind F8 /jump')
         end
-    elseif (mainJob == 'PLD')
+    elseif (mainJob == 'PLD') then
         queue('/macro book 2')
         queue('/macro set 1')
         queue('/bind F8 //holy')
