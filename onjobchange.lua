@@ -28,7 +28,6 @@ addon.version  = '1.0.0';
 
 require('common');
 local chat = require('chat');
-local onJobChange = require('events.jobChange').onJobChange;
 
 local gProfile = nil;
 
@@ -82,6 +81,7 @@ ashita.events.register('load', 'load_cb', function ()
     loadProfile();
     updateJob(mainJobOnLoadString, subJobOnLoadString);
 
+    local onJobChange = require('events.jobChange').onJobChange;
     onJobChange:register(updateJob);
 end);
 
