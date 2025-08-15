@@ -30,6 +30,8 @@ require('common');
 local chat = require('chat');
 local onJobChange = require('events.jobChange').onJobChange;
 
+local gProfile = nil;
+
 function queue(command)
     AshitaCore:GetChatManager():QueueCommand(-1, command)
 end
@@ -55,7 +57,7 @@ local function safeCall(profile, name, ...)
     end
 end
 
-local function loadProfile(mainJobString, subJobString)
+local function loadProfile()
     local profilePath = getProfilePath();
 
     local success, loadError = loadfile(profilePath);
@@ -64,12 +66,11 @@ local function loadProfile(mainJobString, subJobString)
         return;
     end
 
-    local profile = success();
-    safeCall(profile, 'OnJobChange', mainJobString, subJobString);
+    gProfile = success();
 end
 
 local function updateJob(mainJob, subJob)
-    loadProfile(mainJob, subJob);
+    safeCall(gProfile, 'OnJobChangeRun', mainJob, subJob);
 end
 
 ashita.events.register('load', 'load_cb', function ()
@@ -78,7 +79,9 @@ ashita.events.register('load', 'load_cb', function ()
     local mainJobOnLoadString = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", mainJobOnLoad)
     local subJobOnLoadString = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", subJobOnLoad)
 
+    loadProfile();
     updateJob(mainJobOnLoadString, subJobOnLoadString);
+
     onJobChange:register(updateJob);
 end);
 
@@ -114,7 +117,7 @@ local function createProfile()
         return false;
     end
     file:write('local profile = {};\n\n');
-    file:write('profile.OnJobChange = function(mainJob, subJob)\nend\n\n');
+    file:write('profile.OnJobChangeRun = function(mainJob, subJob)\nend\n\n');
     file:write('return profile;\n');
     file:close();
     return true;

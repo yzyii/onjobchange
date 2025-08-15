@@ -10,9 +10,9 @@ Type the following to generate a new template file at ..\\config\\addons\\onjobc
 /ojc new
 ```
 
-The OnJobChange function can then be populated with arbitrary chat commands to be executed on any job change. e.g.
+The OnJobChangeRun function can then be populated with arbitrary chat commands to be executed on any job change. e.g.
 ```lua
-profile.OnJobChange = function(mainJob, subJob)
+profile.OnJobChangeRun = function(mainJob, subJob)
     if (mainJob == 'NIN') then
         queue('/macro book 1')
         queue('/exec nin_alias_script')

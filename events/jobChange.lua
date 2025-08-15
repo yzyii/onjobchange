@@ -20,6 +20,8 @@ ashita.events.register('packet_in', 'subjob_packet_in', function(e)
             local main = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", mainJob);
             local sub = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", subJob);
 
+            lastMainJob = mainJob
+            lastSubJob = subJob
             onJobChange:trigger(main, sub)
         end
     end
