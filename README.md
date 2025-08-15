@@ -1,9 +1,13 @@
 # onjobchange
 
-This addon cobbles together code from the following addons to provide a luashitacast-like config for triggering arbitrary commands on changing jobs (including when subjob changes):
+This addon cobbles together code from the following addons to provide a LuAshitacast-like config for triggering arbitrary chat commands on changing jobs (including when subjob changes):
 
 * Thorny's LuAshitacast (https://github.com/ThornyFFXI/LuAshitacast)
 * Jyouya's JobChange (https://github.com/Jyouya/Ashita-Stuff/blob/master/addons/libs/events/jobChange.lua) 
+
+Use cases for this are typically to automatically set macro books / sets due to different mainjob/subjob combinations and run binds, aliases or /exec scripts for that specific job automatically on switching.
+
+This is primarily also used in conjunction with LuAshitacast to separate responsibility of running job setup scripts or commands from LuAshitacast's OnLoad function.
 
 Type the following to generate a new template file at ..\\config\\addons\\onjobchange\\
 ```
