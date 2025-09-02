@@ -23,18 +23,18 @@ profile.OnJobChangeRun = function(mainJob, subJob)
 
         if (subJob == 'DRK') then
             queue('/macro set 1')
-            queue('/bind F8 //stun')
+            queue('/bind F9 //stun')
         elseif (subJob == 'WAR') then
             queue('/macro set 2')
-            queue('/bind F8 //provoke')
+            queue('/bind F9 //provoke')
         else
             queue('/macro set 3')
-            queue('/bind F8 /jump')
+            queue('/bind F9 /jump')
         end
     elseif (mainJob == 'PLD') then
         queue('/macro book 2')
         queue('/macro set 1')
-        queue('/bind F8 //holy')
+        queue('/bind F9 //holy')
         queue('/exec pld_alias_script')
     end
 end
