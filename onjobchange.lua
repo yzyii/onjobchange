@@ -24,11 +24,12 @@ hp
 addon.author   = 'Rag';
 addon.name     = 'onjobchange';
 addon.desc     = 'Executes generic scripts on job change';
-addon.version  = '1.0.0';
+addon.version  = '1.1.0';
 
 require('common');
 local chat = require('chat');
 
+local currPlayerName = nil;
 local gProfile = nil;
 
 function queue(command)
@@ -57,18 +58,23 @@ local function safeCall(profile, name, ...)
 end
 
 local function loadProfile()
-    local profilePath = getProfilePath();
+    local playerName = AshitaCore:GetMemoryManager():GetParty():GetMemberName(0);
+    if (currPlayerName ~= playerName or currPlayerName == nil) then
+        local profilePath = getProfilePath();
 
-    local success, loadError = loadfile(profilePath);
-    if not success then
-        print(chat.header('onjobchange') .. chat.error(loadError));
-        return;
+        local success, loadError = loadfile(profilePath);
+        if not success then
+            print(chat.header('onjobchange') .. chat.error(loadError));
+            gProfile = nil;
+            return;
+        end
+
+        gProfile = success();
     end
-
-    gProfile = success();
 end
 
 local function updateJob(mainJob, subJob)
+    loadProfile();
     safeCall(gProfile, 'OnJobChangeRun', mainJob, subJob);
 end
 
@@ -78,7 +84,6 @@ ashita.events.register('load', 'load_cb', function ()
     local mainJobOnLoadString = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", mainJobOnLoad)
     local subJobOnLoadString = AshitaCore:GetResourceManager():GetString("jobs.names_abbr", subJobOnLoad)
 
-    loadProfile();
     updateJob(mainJobOnLoadString, subJobOnLoadString);
 
     local onJobChange = require('events.jobChange').onJobChange;
