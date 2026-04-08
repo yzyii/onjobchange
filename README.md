@@ -20,6 +20,7 @@ profile.OnJobChangeRun = function(mainJob, subJob)
     if (mainJob == 'NIN') then
         queue('/macro book 1')
         queue('/exec nin_alias_script')
+        queueWithDelay('/lockstyleset 1', 2)
 
         if (subJob == 'DRK') then
             queue('/macro set 1')
@@ -36,6 +37,13 @@ profile.OnJobChangeRun = function(mainJob, subJob)
         queue('/macro set 1')
         queue('/bind F9 //holy')
         queue('/exec pld_alias_script')
+        queueWithDelay('/lockstyleset 1', 2)
     end
 end
+```
+
+Note the following functions:
+```lua
+    queue(command) -- takes a command string and executes it immediately on job change
+    queueWithDelay(command, delay) -- takes an additional delay in seconds and executes the command after that much time.
 ```
