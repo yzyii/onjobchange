@@ -36,6 +36,10 @@ function queue(command)
     AshitaCore:GetChatManager():QueueCommand(-1, command)
 end
 
+function queueWithDelay(command, delay)
+    (function() AshitaCore:GetChatManager():QueueCommand(-1, command) end):once(2)
+end
+
 local function getProfilePath()
     local playerId = AshitaCore:GetMemoryManager():GetParty():GetMemberServerId(0);
     local playerName = AshitaCore:GetMemoryManager():GetParty():GetMemberName(0);
