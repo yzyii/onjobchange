@@ -37,7 +37,7 @@ function queue(command)
 end
 
 function queueWithDelay(command, delay)
-    (function() AshitaCore:GetChatManager():QueueCommand(-1, command) end):once(2)
+    (function() AshitaCore:GetChatManager():QueueCommand(-1, command) end):once(delay)
 end
 
 local function getProfilePath()
